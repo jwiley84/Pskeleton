@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login and Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'basic/basic.css' %}">
+    
+</head>
+
+<body>
+    <div id="container">
+        <div class="split">
+            <form action='/register' method='POST'>
+                {% csrf_token %}
+                <h3>Register</h3>
+                <label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label>
+                <p><label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label>
+                <p><label for="email">Email:<input type="text" name="email" id="email"></label>
+                <p><label for="birthday">Birthday(optional):<input type="date" name="birthday" id="birthday"></label>
+                <p><label for="password">Password:<input type="password" name="password" id="password"></label>
+                <p><label for="conf">Confim Password:<input type="password" name="conf" id="conf"></label>
+                <p><input type="submit" value="Register">
+            </form>
+        </div>
+        <div class="split" id="rightsplit"> 
+            <form action='/login' method='POST'>
+                {% csrf_token %}
+                <h3>Login</h3>
+                <label for="email">Email:<input type="text" name="email" id="email"></label>
+                <p><label for="password">Password:<input type="password" name="password" id="password"></label>                
+                <p><input type="submit" value="Login">
+            </form>
+            {% if messages %}
+            <div id="msgs">
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}
+                    {% endfor %}
+                </ul>    
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>
